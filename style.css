@@ -241,7 +241,10 @@ h3{
 
 @media (max-width: 400px) {
    canvas, .ctrl-buttons{
-      width: 280px;
+      width: 300px;
+   }
+   canvas{
+      height: 400px;
    }
    h2{
       font-size: 60px;
@@ -252,6 +255,9 @@ h3{
 @media (max-width: 300px) {
    canvas, .ctrl-buttons{
       width: 250px;
+   }
+   canvas{
+      height: 350px;
    }
    h1, h2{
       font-size: 60px;
