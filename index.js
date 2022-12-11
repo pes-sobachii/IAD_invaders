@@ -36,6 +36,8 @@ let isMovingRight = true
 let allDestroyed = true
 let score = 0
 let interval
+let lowestRowCleared
+let midRowCleared
 for (let c = 0; c < brickColumnCount; c++) {
     bricks[c] = [];
     for (let r = 0; r < brickRowCount; r++) {
@@ -231,14 +233,19 @@ function draw() {
     y += stopBallRendering || dy;
     dxBrick += isMovingRight ? 1 : -1
     dyBrick += 0.19
-    console.log(canvas.width)
+
     if (bricks[brickColumnCount - 1][brickRowCount - 1].x + 30 >= canvas.width ){
         isMovingRight = false
     } else if (bricks[0][0].x === 0 ){
         isMovingRight = true
     }
 
-    if (bricks[brickColumnCount - 1][brickRowCount - 1].y + 80 >= canvas.height ){
+    lowestRowCleared = !!(bricks[0][2].status + bricks[1][2].status + bricks[2][2].status + bricks[3][2].status)
+    midRowCleared = !!(bricks[0][1].status + bricks[1][1].status + bricks[2][1].status + bricks[3][1].status)
+
+    if ((lowestRowCleared && bricks[brickColumnCount - 1][brickRowCount - 1].y + 80 >= canvas.height) ||
+        (midRowCleared && bricks[brickColumnCount - 2][brickRowCount - 2].y + 80 >= canvas.height) ||
+        bricks[brickColumnCount - 3][brickRowCount - 3].y + 70 >= canvas.height){
         clearInterval(interval);
         endGameScreen.insertAdjacentHTML('afterbegin', drawGameOver());
     } else if (allDestroyed){
