@@ -224,6 +224,13 @@ h3{
    color: ghostwhite;
 }
 
+@media (max-height: 670px) {
+   canvas{
+      width: 380px;
+      height: 520px;
+   }
+}
+
 @media (max-width: 500px) {
    canvas{
       width: 380px;
